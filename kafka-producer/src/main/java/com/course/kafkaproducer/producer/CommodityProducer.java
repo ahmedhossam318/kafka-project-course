@@ -10,10 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommodityProducer {
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     public void sendMessage(Commodity commodity) throws JsonProcessingException {
         var json = objectMapper.writeValueAsString(commodity);
